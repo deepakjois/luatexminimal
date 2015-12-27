@@ -1,4 +1,4 @@
-[LuaTeX] is a TeX-based computer typesetting system, which provides a Lua based scripting environment. However, it is not enough to merely have LuaTeX as a binary program to be able to produce fully typeset documents. Most people depend on software like [TeX Live] for document production, which provides LuaTeX (and many other TeX related programs) in a pre-configured environment, ready to be used.
+[LuaTeX] is a TeX-based computer typesetting system, which provides a Lua based scripting environment. However, it is not enough to merely have LuaTeX as a binary program to be able to produce fully typeset documents. Most people depend on software like [TeX Live] for document production, which provides LuaTeX (and many other TeX related programs) in a pre-configured environment, ready to be used. TeXLive is a bit unwieldy, and not suitable for experimenting with latest releases. It could also take up a large amount of space.
 
 [LuaTeX]:http://www.luatex.org/
 [TeX Live]:https://www.tug.org/texlive/
@@ -12,7 +12,7 @@ _luatexminimal_ is largely inspired from Graham Douglas’ [series of blog posts
 ### Usage
 * Clone this repo.
 
-* [Download a copy][dl] of the LuaTeX binary, or [compile it from sources][svn]. The repo tree has currently been tested against LuaTeX Version beta-0.87.1, on OS X El Capitan.
+* [Download a copy][dl] of the LuaTeX binary, or better still, [compile it from sources][svn]. The repo tree has currently been tested against LuaTeX Version beta-0.87.1, on OS X El Capitan.
 
 [dl]:http://www.luatex.org/download.html
 [svn]:https://foundry.supelec.fr/projects/luatex
