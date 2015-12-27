@@ -5,7 +5,7 @@
 
 ## _luatexminimal_ – a minimal environment for LuaTeX
 
-A minimal installation of LuaTeX could be useful for experimentation and learning. Therefore, this repo provides a tree for a barebones LuaTeX installation that can compile basic text documents into PDF. You should be able to drop in a LuaTeX binary compiled from source into the root of the tree, set some environment variables (see below), and start compiling simple plain TeX documents. 
+A minimal installation of LuaTeX could be useful for experimentation and learning. Therefore, this repo provides a tree for a barebones LuaTeX installation that can compile simple plain TeX documents into PDF. You should be able to drop in a LuaTeX binary compiled from source into the root of the tree, set some environment variables (see below), and start using it.
 
 _luatexminimal_ is largely inspired from Graham Douglas’ [series of blog posts](http://www.readytext.co.uk/?cat=30), so a lot of credit must go to him. It is also highly recommended that you read through the posts before attempting to use this repo.
 
