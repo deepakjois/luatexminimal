@@ -19,6 +19,8 @@ _luatexminimal_ is largely inspired from Graham Douglas’ [series of blog posts
 
 * Drop the binary into the root of the tree and add it to the PATH.
 
+* Set `TEXMFCNF` to point to the `texmf/web2c` folder in the cloned repo: ``export TEXMFCNF=`pwd`/texmf/web2c/``
+
 * Optionally, set `KPATHSEA_DEBUG` to `-1`, to troubleshoot any path and file-finding issues: `export KPATHSEA_DEBUG=-1`
 
 * Generate a `plain.fmt` file, by doing:
