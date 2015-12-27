@@ -11,7 +11,7 @@ _luatexminimal_ is largely inspired from Graham Douglas’ [series of blog posts
 
 ### Usage
 
-1. [Download a copy][dl] of the LuaTeX binary, or [compile it from sources][svn]. The repo tree has currently been tested against LuaTeX Version beta-0.87.1.
+1. [Download a copy][dl] of the LuaTeX binary, or [compile it from sources][svn]. The repo tree has currently been tested against LuaTeX Version beta-0.87.1, on OS X El Capitan.
 
 [dl]:http://www.luatex.org/download.html
 [svn]:https://foundry.supelec.fr/projects/luatex
