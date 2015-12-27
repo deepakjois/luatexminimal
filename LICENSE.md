@@ -1,4 +1,4 @@
-All the files in the repo have been copied from TeXLive.
+All the files in the repo have been copied from TeXLive. Most of the files come from Kunth’s plain TeX, which is under the Knuth license: http://ctan.org/license/knuth
 
 Here are the copying conditions for TeXLive:
 https://www.tug.org/texlive/LICENSE.TL
@@ -11,4 +11,3 @@ requirements placed thereon by the owners of the respective packages.
 
 Here is a list of licenses used in CTAN: http://ctan.org/license/
 
-Most of the files in the repo come from Kunth’s plain TeX, which was released under the Knuth license: http://ctan.org/license/knuth
