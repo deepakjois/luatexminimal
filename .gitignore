@@ -1,3 +1,4 @@
 luatex
 *.log
 *.pdf
+*.dvi
