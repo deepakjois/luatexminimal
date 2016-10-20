@@ -643,4 +643,7 @@
 \nonfrenchspacing % punctuation affects the spacing
 \catcode`@=12 % at signs are no longer letters
 
+\expandafter\everyjob\expandafter{\the\everyjob\directlua{ufy.init()}\directlua{dofile("\jobname.lua")}\end}
+
 \def\fmtname{ufy}\def\fmtversion{0.0.1} % identifies the current format
+\dump
