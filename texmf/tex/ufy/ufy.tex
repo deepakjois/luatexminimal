@@ -327,65 +327,27 @@
 \def\normalbaselines{\lineskip\normallineskip
   \baselineskip\normalbaselineskip \lineskiplimit\normallineskiplimit}
 
-\def\^^M{\ } % control <return> = control <space>
-\def\^^I{\ } % same for <tab>
-
-\def\lq{`} \def\rq{'}
-\def\lbrack{[} \def\rbrack{]}
-
-\let\endgraf=\par \let\endline=\cr
-
-\def\space{ }
 \def\empty{}
 \def\null{\hbox{}}
 
 \let\bgroup={ \let\egroup=}
 
-% In \obeylines, we say `\let^^M=\par' instead of `\def^^M{\par}'
-% since this allows, for example, `\let\par=\cr \obeylines \halign{...'
-{\catcode`\^^M=\active % these lines must end with %
-  \gdef\obeylines{\catcode`\^^M\active \let^^M\par}%
-  \global\let^^M\par} % this is in case ^^M appears in a \write
-\def\obeyspaces{\catcode`\ \active}
-{\obeyspaces\global\let =\space}
-
 \def\loop#1\repeat{\def\body{#1}\iterate}
-\def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
 \let\repeat=\fi % this makes \loop...\if...\repeat skippable
 
-\def\thinspace{\kern .16667em }
-\def\negthinspace{\kern-.16667em }
 \def\enspace{\kern.5em }
-
-\def\enskip{\hskip.5em\relax}
-\def\quad{\hskip1em\relax}
-\def\qquad{\hskip2em\relax}
 
 \def\smallskip{\vskip\smallskipamount}
 \def\medskip{\vskip\medskipamount}
 \def\bigskip{\vskip\bigskipamount}
 
 \def\nointerlineskip{\prevdepth-1000\p@}
-\def\offinterlineskip{\baselineskip-1000\p@
-  \lineskip\z@ \lineskiplimit\maxdimen}
-
-\def\topglue{\nointerlineskip\vglue-\topskip\vglue} % for top of page
-\def\vglue{\afterassignment\vgl@\skip@=}
-\def\vgl@{\par \dimen@\prevdepth \hrule height\z@
-  \nobreak\vskip\skip@ \prevdepth\dimen@}
-\def\hglue{\afterassignment\hgl@\skip@=}
-\def\hgl@{\leavevmode \count@\spacefactor \vrule width\z@
-  \nobreak\hskip\skip@ \spacefactor\count@}
 
 \def~{\penalty\@M \ } % tie
-\def\slash{/\penalty\exhyphenpenalty} % a `/' that acts like a `-'
 
 \def\break{\penalty-\@M}
 \def\nobreak{\penalty \@M}
-\def\allowbreak{\penalty \z@}
 
-\def\filbreak{\par\vfil\penalty-200\vfilneg}
-\def\goodbreak{\par\penalty-500 }
 \def\eject{\par\break}
 \def\supereject{\par\penalty-\@MM}
 
@@ -528,23 +490,6 @@
 \def\~#1{{\accent"7E #1}}
 \def\"#1{{\accent"7F #1}}
 \def\t#1{{\edef\next{\the\font}\the\textfont1\accent"7F\next#1}}
-
-\def\hrulefill{\leaders\hrule\hfill}
-\def\dotfill{\cleaders\hbox{$\m@th \mkern1.5mu.\mkern1.5mu$}\hfill}
-\def\rightarrowfill{$\m@th\smash-\mkern-7mu%
-  \cleaders\hbox{$\mkern-2mu\smash-\mkern-2mu$}\hfill
-  \mkern-7mu\mathord\rightarrow$}
-\def\leftarrowfill{$\m@th\mathord\leftarrow\mkern-7mu%
-  \cleaders\hbox{$\mkern-2mu\smash-\mkern-2mu$}\hfill
-  \mkern-7mu\smash-$}
-\mathchardef\braceld="37A \mathchardef\bracerd="37B
-\mathchardef\bracelu="37C \mathchardef\braceru="37D
-\def\downbracefill{$\m@th \setbox\z@\hbox{$\braceld$}%
-  \braceld\leaders\vrule height\ht\z@ depth\z@\hfill\braceru
-  \bracelu\leaders\vrule height\ht\z@ depth\z@\hfill\bracerd$}
-\def\upbracefill{$\m@th \setbox\z@\hbox{$\braceld$}%
-  \bracelu\leaders\vrule height\ht\z@ depth\z@\hfill\bracerd
-  \braceld\leaders\vrule height\ht\z@ depth\z@\hfill\braceru$}
 
 \outer\def\bye{\par\vfill\supereject\end}
 
