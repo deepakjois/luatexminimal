@@ -24,13 +24,6 @@
 % \catcode`\a=11 ... \catcode`\z=11 % lowercase letters
 % all others are type 12 (other)
 
-% Here is a list of the characters that have been specially catcoded:
-\def\dospecials{\do\ \do\\\do\{\do\}\do\$\do\&%
-  \do\#\do\^\do\^^K\do\_\do\^^A\do\%\do\~}
-% (not counting ascii null, tab, linefeed, formfeed, return, delete)
-% Each symbol in the list is preceded by \do, which can be defined
-% if you want to do something to every item in the list.
-
 % We make @ signs act like letters, temporarily, to avoid conflict
 % between user names and internal control sequences of plain format.
 \catcode`@=11
@@ -292,57 +285,10 @@
 
 % Definitions for preloaded fonts
 
-\def\magstephalf{1095 }
-\def\magstep#1{\ifcase#1 \@m\or 1200\or 1440\or 1728\or 2074\or 2488\fi\relax}
 
 \message{fonts,}
 
 \font\tenrm=cmr10 % roman text
-\font\sevenrm=cmr7
-\font\fiverm=cmr5
-
-\font\teni=cmmi10 % math italic
-\font\seveni=cmmi7
-\font\fivei=cmmi5
-
-\font\tensy=cmsy10 % math symbols
-\font\sevensy=cmsy7
-\font\fivesy=cmsy5
-
-\font\tenex=cmex10 % math extension
-
-\font\tenbf=cmbx10 % boldface extended
-\font\sevenbf=cmbx7
-\font\fivebf=cmbx5
-
-\font\tentt=cmtt10 % typewriter
-
-\font\tensl=cmsl10 % slanted roman
-
-\font\tenit=cmti10 % text italic
-
-\message{more fonts,}
-
-\skewchar\teni='177 \skewchar\seveni='177 \skewchar\fivei='177
-\skewchar\tensy='60 \skewchar\sevensy='60 \skewchar\fivesy='60
-
-\textfont0=\tenrm \scriptfont0=\sevenrm \scriptscriptfont0=\fiverm
-\def\rm{\fam\z@\tenrm}
-\textfont1=\teni \scriptfont1=\seveni \scriptscriptfont1=\fivei
-\def\mit{\fam\@ne} \def\oldstyle{\fam\@ne\teni}
-\textfont2=\tensy \scriptfont2=\sevensy \scriptscriptfont2=\fivesy
-\def\cal{\fam\tw@}
-\textfont3=\tenex \scriptfont3=\tenex \scriptscriptfont3=\tenex
-\newfam\itfam \def\it{\fam\itfam\tenit} % \it is family 4
-\textfont\itfam=\tenit
-\newfam\slfam \def\sl{\fam\slfam\tensl} % \sl is family 5
-\textfont\slfam=\tensl
-\newfam\bffam \def\bf{\fam\bffam\tenbf} % \bf is family 6
-\textfont\bffam=\tenbf \scriptfont\bffam=\sevenbf
-\scriptscriptfont\bffam=\fivebf
-\newfam\ttfam \def\tt{\fam\ttfam\tentt} % \tt is family 7
-\textfont\ttfam=\tentt
-
 % Macros for setting ordinary text
 \message{macros,}
 
@@ -593,10 +539,6 @@
 
 \lefthyphenmin=2 \righthyphenmin=3 % disallow x- or -xx breaks
 
-\def\magnification{\afterassignment\m@g\count@}
-\def\m@g{\mag\count@
-  \hsize6.5truein\vsize8.9truein\dimen\footins8truein}
-
 \def\loggingall{\tracingcommands\tw@\tracingstats\tw@
   \tracingpages\@ne\tracingoutput\@ne\tracinglostchars\@ne
   \tracingmacros\tw@\tracingparagraphs\@ne\tracingrestores\@ne
@@ -606,7 +548,7 @@
 \def\showhyphens#1{\setbox0\vbox{\parfillskip\z@skip\hsize\maxdimen\tenrm
   \pretolerance\m@ne\tolerance\m@ne\hbadness0\showboxdepth0\ #1}}
 
-\normalbaselines\rm % select roman font
+\normalbaselines\tenrm % select roman font
 \nonfrenchspacing % punctuation affects the spacing
 \catcode`@=12 % at signs are no longer letters
 
