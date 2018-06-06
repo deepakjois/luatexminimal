@@ -579,79 +579,14 @@
 
 \message{output routines,}
 
-\countdef\pageno=0 \pageno=1 % first page is number 1
-\newtoks\headline \headline={\hfil} % headline is normally blank
-\newtoks\footline \footline={\hss\tenrm\folio\hss}
-  % footline is normally a centered page number in font \tenrm
-\newif\ifr@ggedbottom
-\def\raggedbottom{\topskip 10\p@ plus60\p@ \r@ggedbottomtrue}
-\def\normalbottom{\topskip 10\p@ \r@ggedbottomfalse} % undoes \raggedbottom
-\def\folio{\ifnum\pageno<\z@ \romannumeral-\pageno \else\number\pageno \fi}
-\def\nopagenumbers{\footline{\hfil}} % blank out the footline
-\def\advancepageno{\ifnum\pageno<\z@ \global\advance\pageno\m@ne
-  \else\global\advance\pageno\@ne \fi} % increase |pageno|
-
-\newinsert\footins
-\def\footnote#1{\let\@sf\empty % parameter #2 (the text) is read later
-  \ifhmode\edef\@sf{\spacefactor\the\spacefactor}\/\fi
-  #1\@sf\vfootnote{#1}}
-\def\vfootnote#1{\insert\footins\bgroup
-  \interlinepenalty\interfootnotelinepenalty
-  \splittopskip\ht\strutbox % top baseline for broken footnotes
-  \splitmaxdepth\dp\strutbox \floatingpenalty\@MM
-  \leftskip\z@skip \rightskip\z@skip \spaceskip\z@skip \xspaceskip\z@skip
-  \textindent{#1}\footstrut\futurelet\next\fo@t}
-\def\fo@t{\ifcat\bgroup\noexpand\next \let\next\f@@t
-  \else\let\next\f@t\fi \next}
-\def\f@@t{\bgroup\aftergroup\@foot\let\next}
-\def\f@t#1{#1\@foot}
-\def\@foot{\strut\egroup}
-\def\footstrut{\vbox to\splittopskip{}}
-\skip\footins=\bigskipamount % space added when footnote is present
-\count\footins=1000 % footnote magnification factor (1 to 1)
-\dimen\footins=8in % maximum footnotes per page
-
-\newinsert\topins
-\newif\ifp@ge \newif\if@mid
-\def\topinsert{\@midfalse\p@gefalse\@ins}
-\def\midinsert{\@midtrue\@ins}
-\def\pageinsert{\@midfalse\p@getrue\@ins}
-\skip\topins=\z@skip % no space added when a topinsert is present
-\count\topins=1000 % magnification factor (1 to 1)
-\dimen\topins=\maxdimen % no limit per page
-\def\@ins{\par\begingroup\setbox\z@\vbox\bgroup} % start a \vbox
-\def\endinsert{\egroup % finish the \vbox
-  \if@mid \dimen@\ht\z@ \advance\dimen@\dp\z@ \advance\dimen@12\p@
-    \advance\dimen@\pagetotal \advance\dimen@-\pageshrink
-    \ifdim\dimen@>\pagegoal\@midfalse\p@gefalse\fi\fi
-  \if@mid \bigskip\box\z@\bigbreak
-  \else\insert\topins{\penalty100 % floating insertion
-    \splittopskip\z@skip
-    \splitmaxdepth\maxdimen \floatingpenalty\z@
-    \ifp@ge \dimen@\dp\z@
-    \vbox to\vsize{\unvbox\z@\kern-\dimen@}% depth is zero
-    \else \box\z@\nobreak\bigskip\fi}\fi\endgroup}
-
 \output{\plainoutput}
-\def\plainoutput{\shipout\vbox{\makeheadline\pagebody\makefootline}%
-  \advancepageno
+\def\plainoutput{\shipout\vbox{\pagebody}%
   \ifnum\outputpenalty>-\@MM \else\dosupereject\fi}
 \def\pagebody{\vbox to\vsize{\boxmaxdepth\maxdepth \pagecontents}}
-\def\makeheadline{\vbox to\z@{\vskip-22.5\p@
-  \line{\vbox to8.5\p@{}\the\headline}\vss}\nointerlineskip}
-\def\makefootline{\baselineskip24\p@\lineskiplimit\z@\line{\the\footline}}
 \def\dosupereject{\ifnum\insertpenalties>\z@ % something is being held over
   \line{}\kern-\topskip\nobreak\vfill\supereject\fi}
 
-\def\pagecontents{\ifvoid\topins\else\unvbox\topins\fi
-  \dimen@=\dp\@cclv \unvbox\@cclv % open up \box255
-  \ifvoid\footins\else % footnote info is present
-    \vskip\skip\footins
-    \footnoterule
-    \unvbox\footins\fi
-  \ifr@ggedbottom \kern-\dimen@ \vfil \fi}
-\def\footnoterule{\kern-3\p@
-  \hrule width 2truein \kern 2.6\p@} % the \hrule is .4pt high
+\def\pagecontents{\dimen@=\dp\@cclv \unvbox\@cclv} % open up \box255
 
 % Hyphenation, miscellaneous macros, and initial values for standard layout
 \message{hyphenation}
