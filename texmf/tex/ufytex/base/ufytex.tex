@@ -123,50 +123,23 @@
 \outer\def\newcount{\alloc@0\count\countdef\insc@unt}
 \outer\def\newdimen{\alloc@1\dimen\dimendef\insc@unt}
 \outer\def\newskip{\alloc@2\skip\skipdef\insc@unt}
-\outer\def\newmuskip{\alloc@3\muskip\muskipdef\@cclvi}
 \outer\def\newbox{\alloc@4\box\chardef\insc@unt}
 \let\newtoks=\relax % we do this to allow plain.tex to be read in twice
-\outer\def\newhelp#1#2{\newtoks#1#1\expandafter{\csname#2\endcsname}}
 \outer\def\newtoks{\alloc@5\toks\toksdef\@cclvi}
-\outer\def\newread{\alloc@6\read\chardef\sixt@@n}
-\outer\def\newwrite{\alloc@7\write\chardef\sixt@@n}
-\outer\def\newfam{\alloc@8\fam\chardef\sixt@@n}
-\outer\def\newlanguage{\alloc@9\language\chardef\@cclvi}
 \def\alloc@#1#2#3#4#5{\global\advance\count1#1by\@ne
   \ch@ck#1#4#2% make sure there's still room
   \allocationnumber=\count1#1%
   \global#3#5=\allocationnumber
   \wlog{\string#5=\string#2\the\allocationnumber}}
-\outer\def\newinsert#1{\global\advance\insc@unt by\m@ne
-  \ch@ck0\insc@unt\count
-  \ch@ck1\insc@unt\dimen
-  \ch@ck2\insc@unt\skip
-  \ch@ck4\insc@unt\box
-  \allocationnumber=\insc@unt
-  \global\chardef#1=\allocationnumber
-  \wlog{\string#1=\string\insert\the\allocationnumber}}
 \def\ch@ck#1#2#3{\ifnum\count1#1<#2%
   \else\errmessage{No room for a new #3}\fi}
 
 % Here are some examples of allocation.
 \newdimen\maxdimen \maxdimen=16383.99999pt % the largest legal <dimen>
-\newskip\hideskip \hideskip=-1000pt plus 1fill % negative but can grow
-\newskip\centering \centering=0pt plus 1000pt minus 1000pt
 \newdimen\p@ \p@=1pt % this saves macro space and time
 \newdimen\z@ \z@=0pt % can be used both for 0pt and 0
 \newskip\z@skip \z@skip=0pt plus0pt minus0pt
 \newbox\voidb@x % permanently void box register
-
-% And here's a different sort of allocation:
-% For example, \newif\iffoo creates \footrue, \foofalse to go with \iffoo.
-\outer\def\newif#1{\count@\escapechar \escapechar\m@ne
-  \expandafter\expandafter\expandafter
-   \def\@if#1{true}{\let#1=\iftrue}%
-  \expandafter\expandafter\expandafter
-   \def\@if#1{false}{\let#1=\iffalse}%
-  \@if#1{false}\escapechar\count@} % the condition starts out false
-\def\@if#1#2{\csname\expandafter\if@\string#1#2\endcsname}
-{\uccode`1=`i \uccode`2=`f \uppercase{\gdef\if@12{}}} % `if' is required
 
 % Assign initial values to TeX's parameters
 
@@ -273,15 +246,9 @@
 \thickmuskip=5mu plus 5mu
 
 % We also define special registers that function like parameters:
-\newskip\smallskipamount \smallskipamount=3pt plus 1pt minus 1pt
-\newskip\medskipamount \medskipamount=6pt plus 2pt minus 2pt
-\newskip\bigskipamount \bigskipamount=12pt plus 4pt minus 4pt
 \newskip\normalbaselineskip \normalbaselineskip=12pt
 \newskip\normallineskip \normallineskip=1pt
 \newdimen\normallineskiplimit \normallineskiplimit=0pt
-\newdimen\jot \jot=3pt
-\newcount\interdisplaylinepenalty \interdisplaylinepenalty=100
-\newcount\interfootnotelinepenalty \interfootnotelinepenalty=100
 
 % Definitions for preloaded fonts
 
@@ -292,17 +259,8 @@
 % Macros for setting ordinary text
 \message{macros,}
 
-\def\frenchspacing{\sfcode`\.\@m \sfcode`\?\@m \sfcode`\!\@m
-  \sfcode`\:\@m \sfcode`\;\@m \sfcode`\,\@m}
-\def\nonfrenchspacing{\sfcode`\.3000\sfcode`\?3000\sfcode`\!3000%
-  \sfcode`\:2000\sfcode`\;1500\sfcode`\,1250 }
-
 \def\normalbaselines{\lineskip\normallineskip
   \baselineskip\normalbaselineskip \lineskiplimit\normallineskiplimit}
-
-\def\^^M{\ } % control <return> = control <space>
-\def\^^I{\ } % same for <tab>
-
 
 \outer\def\bye{\par\vfill\supereject\end}
 
@@ -334,7 +292,6 @@
   \pretolerance\m@ne\tolerance\m@ne\hbadness0\showboxdepth0\ #1}}
 
 \normalbaselines\tenrm % select roman font
-\nonfrenchspacing % punctuation affects the spacing
 \catcode`@=12 % at signs are no longer letters
 
 \def\fmtname{ufytex}\def\fmtversion{0.001} % identifies the current format
